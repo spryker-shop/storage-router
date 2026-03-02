@@ -66,19 +66,11 @@ class StorageUrlGenerator implements UrlGeneratorInterface
         $this->storageRouterEnhancerPlugins = $storageRouterEnhancerPlugins;
     }
 
-    /**
-     * @param \Symfony\Component\Routing\RequestContext $context
-     *
-     * @return void
-     */
     public function setContext(RequestContext $context): void
     {
         $this->context = $context;
     }
 
-    /**
-     * @return \Symfony\Component\Routing\RequestContext
-     */
     public function getContext(): RequestContext
     {
         return $this->context;
@@ -167,12 +159,6 @@ class StorageUrlGenerator implements UrlGeneratorInterface
         return $url;
     }
 
-    /**
-     * @param string $pathInfo
-     * @param int $referenceType
-     *
-     * @return string
-     */
     protected function buildUrl(string $pathInfo, int $referenceType): string
     {
         $scheme = $this->getScheme();
@@ -183,11 +169,6 @@ class StorageUrlGenerator implements UrlGeneratorInterface
         return $schemeAuthority . $this->context->getBaseUrl() . $pathInfo;
     }
 
-    /**
-     * @param string $scheme
-     *
-     * @return string
-     */
     protected function getPortPart(string $scheme): string
     {
         if ($scheme === 'http' && $this->context->getHttpPort() !== 80) {
@@ -201,9 +182,6 @@ class StorageUrlGenerator implements UrlGeneratorInterface
         return '';
     }
 
-    /**
-     * @return string
-     */
     protected function getScheme(): string
     {
         return $this->context->getScheme();

@@ -29,12 +29,6 @@ class StorePrefixStorageRouterEnhancerPlugin extends AbstractPlugin implements S
      */
     protected $currentStore;
 
-    /**
-     * @param string $pathinfo
-     * @param \Symfony\Component\Routing\RequestContext $requestContext
-     *
-     * @return string
-     */
     public function beforeMatch(string $pathinfo, RequestContext $requestContext): string
     {
         if ($pathinfo === '/') {
@@ -66,13 +60,6 @@ class StorePrefixStorageRouterEnhancerPlugin extends AbstractPlugin implements S
         return $parameters;
     }
 
-    /**
-     * @param string $url
-     * @param \Symfony\Component\Routing\RequestContext $requestContext
-     * @param int $referenceType
-     *
-     * @return string
-     */
     public function afterGenerate(string $url, RequestContext $requestContext, int $referenceType): string
     {
         $store = $this->findStore($requestContext);
@@ -84,11 +71,6 @@ class StorePrefixStorageRouterEnhancerPlugin extends AbstractPlugin implements S
         return $url;
     }
 
-    /**
-     * @param \Symfony\Component\Routing\RequestContext $requestContext
-     *
-     * @return string|null
-     */
     protected function findStore(RequestContext $requestContext): ?string
     {
         return $requestContext->hasParameter(static::PARAMETER_STORE) && $requestContext->getParameter(static::PARAMETER_STORE) !== null
@@ -98,13 +80,6 @@ class StorePrefixStorageRouterEnhancerPlugin extends AbstractPlugin implements S
                 : null);
     }
 
-    /**
-     * @param string $url
-     * @param string $store
-     * @param int $referenceType
-     *
-     * @return string
-     */
     protected function buildUrlWithStore(string $url, string $store, int $referenceType): string
     {
         if ($url === '/') {

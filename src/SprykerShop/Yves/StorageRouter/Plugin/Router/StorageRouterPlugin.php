@@ -16,9 +16,6 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class StorageRouterPlugin extends AbstractPlugin implements RouterPluginInterface
 {
-    /**
-     * @return \Symfony\Component\Routing\RouterInterface
-     */
     public function getRouter(): RouterInterface
     {
         return $this->getFactory()->createRouter();

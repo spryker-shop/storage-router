@@ -25,9 +25,6 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class StorageRouterFactory extends AbstractFactory
 {
-    /**
-     * @return \Symfony\Component\Routing\RouterInterface
-     */
     public function createRouter(): RouterInterface
     {
         return new DynamicRouter(
@@ -47,9 +44,6 @@ class StorageRouterFactory extends AbstractFactory
         ];
     }
 
-    /**
-     * @return \Symfony\Component\Routing\Matcher\RequestMatcherInterface
-     */
     public function createRequestMatcher(): RequestMatcherInterface
     {
         return new StorageRequestMatcher(
@@ -58,9 +52,6 @@ class StorageRouterFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Routing\Generator\UrlGeneratorInterface
-     */
     public function createUrlGenerator(): UrlGeneratorInterface
     {
         return new StorageUrlGenerator(
@@ -70,9 +61,6 @@ class StorageRouterFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface
-     */
     public function getUrlStorageClient(): StorageRouterToUrlStorageClientInterface
     {
         return $this->getProvidedDependency(StorageRouterDependencyProvider::CLIENT_URL_STORAGE);
@@ -86,9 +74,6 @@ class StorageRouterFactory extends AbstractFactory
         return $this->getProvidedDependency(StorageRouterDependencyProvider::PLUGIN_RESOURCE_CREATORS);
     }
 
-    /**
-     * @return \SprykerShop\Yves\StorageRouter\ParameterMerger\ParameterMergerInterface
-     */
     public function createParameterMerger(): ParameterMergerInterface
     {
         return new ParameterMerger();
@@ -102,9 +87,6 @@ class StorageRouterFactory extends AbstractFactory
         return $this->getProvidedDependency(StorageRouterDependencyProvider::PLUGINS_ROUTER_ENHANCER);
     }
 
-    /**
-     * @return \SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToStoreClientInterface
-     */
     public function getStoreClient(): StorageRouterToStoreClientInterface
     {
         return $this->getProvidedDependency(StorageRouterDependencyProvider::CLIENT_STORE);
