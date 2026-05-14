@@ -7,7 +7,7 @@
 
 namespace SprykerShop\Yves\StorageRouter\UrlGenerator;
 
-use SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface;
+use Spryker\Client\UrlStorage\UrlStorageClientInterface;
 use SprykerShop\Yves\StorageRouter\ParameterMerger\ParameterMergerInterface;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\Routing\Generator\UrlGenerator;
@@ -36,10 +36,7 @@ class StorageUrlGenerator implements UrlGeneratorInterface
      */
     protected $context;
 
-    /**
-     * @var \SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface
-     */
-    protected $urlStorageClient;
+    protected UrlStorageClientInterface $urlStorageClient;
 
     /**
      * @var \SprykerShop\Yves\StorageRouter\ParameterMerger\ParameterMergerInterface
@@ -52,12 +49,10 @@ class StorageUrlGenerator implements UrlGeneratorInterface
     protected array $storageRouterEnhancerPlugins;
 
     /**
-     * @param \SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface $urlStorageClient
-     * @param \SprykerShop\Yves\StorageRouter\ParameterMerger\ParameterMergerInterface $parameterMerger
      * @param array<\SprykerShop\Yves\StorageRouterExtension\Dependency\Plugin\StorageRouterEnhancerPluginInterface> $storageRouterEnhancerPlugins
      */
     public function __construct(
-        StorageRouterToUrlStorageClientInterface $urlStorageClient,
+        UrlStorageClientInterface $urlStorageClient,
         ParameterMergerInterface $parameterMerger,
         array $storageRouterEnhancerPlugins
     ) {
@@ -89,7 +84,7 @@ class StorageUrlGenerator implements UrlGeneratorInterface
         foreach ($this->storageRouterEnhancerPlugins as $storageRouterEnhancerPlugin) {
             $name = $storageRouterEnhancerPlugin->beforeMatch($name, $this->getContext());
         }
-        if (!$this->urlStorageClient->matchUrl($name, $localeName)) {
+        if (!$this->urlStorageClient->hasUrl($name, $localeName)) {
             return $this->generateHomePageUrl($referenceType);
         }
 

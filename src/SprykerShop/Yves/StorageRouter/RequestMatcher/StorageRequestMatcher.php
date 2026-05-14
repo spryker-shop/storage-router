@@ -7,7 +7,7 @@
 
 namespace SprykerShop\Yves\StorageRouter\RequestMatcher;
 
-use SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface;
+use Spryker\Client\UrlStorage\UrlStorageClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\RequestMatcherInterface;
@@ -20,22 +20,15 @@ class StorageRequestMatcher implements RequestMatcherInterface
      */
     protected const ATTRIBUTE_PATH_INFO = 'pathinfo';
 
-    /**
-     * @var \SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface
-     */
-    protected $urlStorageClient;
+    protected UrlStorageClientInterface $urlStorageClient;
 
     /**
      * @var array<\SprykerShop\Yves\StorageRouterExtension\Dependency\Plugin\StorageRouterEnhancerPluginInterface>
      */
     protected array $storageRouterEnhancerPlugins;
 
-    /**
-     * @param \SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface $urlStorageClient
-     * @param array<\SprykerShop\Yves\StorageRouterExtension\Dependency\Plugin\StorageRouterEnhancerPluginInterface> $storageRouterEnhancerPlugins
-     */
     public function __construct(
-        StorageRouterToUrlStorageClientInterface $urlStorageClient,
+        UrlStorageClientInterface $urlStorageClient,
         array $storageRouterEnhancerPlugins
     ) {
         $this->urlStorageClient = $urlStorageClient;

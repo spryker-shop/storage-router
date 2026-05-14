@@ -10,7 +10,7 @@
         "spryker/router-extension": "^1.0.0",
         "spryker/store": "^1.19.0",
         "spryker/symfony": "^3.2.2",
-        "spryker/url-storage": "^1.4.1"
+        "spryker/url-storage": "^1.24.0"
     },
     "require-dev": {
         "spryker/code-sniffer": "*",

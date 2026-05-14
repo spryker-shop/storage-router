@@ -9,7 +9,6 @@ namespace SprykerShop\Yves\StorageRouter;
 
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
-use SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientBridge;
 use SprykerShop\Yves\StorageRouter\Dependency\Client\StorageStorageRouterToStoreClientBridge;
 
 /**
@@ -55,7 +54,7 @@ class StorageRouterDependencyProvider extends AbstractBundleDependencyProvider
     protected function addUrlStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_URL_STORAGE, function (Container $container) {
-            return new StorageRouterToUrlStorageClientBridge($container->getLocator()->urlStorage()->client());
+            return $container->getLocator()->urlStorage()->client();
         });
 
         return $container;

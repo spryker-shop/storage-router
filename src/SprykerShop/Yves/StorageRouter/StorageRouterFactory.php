@@ -7,9 +7,9 @@
 
 namespace SprykerShop\Yves\StorageRouter;
 
+use Spryker\Client\UrlStorage\UrlStorageClientInterface;
 use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToStoreClientInterface;
-use SprykerShop\Yves\StorageRouter\Dependency\Client\StorageRouterToUrlStorageClientInterface;
 use SprykerShop\Yves\StorageRouter\ParameterMerger\ParameterMerger;
 use SprykerShop\Yves\StorageRouter\ParameterMerger\ParameterMergerInterface;
 use SprykerShop\Yves\StorageRouter\RequestMatcher\StorageRequestMatcher;
@@ -61,7 +61,7 @@ class StorageRouterFactory extends AbstractFactory
         );
     }
 
-    public function getUrlStorageClient(): StorageRouterToUrlStorageClientInterface
+    public function getUrlStorageClient(): UrlStorageClientInterface
     {
         return $this->getProvidedDependency(StorageRouterDependencyProvider::CLIENT_URL_STORAGE);
     }
